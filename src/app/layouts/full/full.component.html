@@ -1,0 +1,86 @@
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div class="main-container">
+    <!-- ============================================================== -->
+    <!-- Topbar - style you can find in header.scss -->
+    <!-- ============================================================== -->
+    <mat-toolbar class="topbar telative">
+      <mat-toolbar-row>
+        <!-- ============================================================== -->
+        <!-- sidebar toggle -->
+        <!-- ============================================================== -->
+
+        <button fxHide.gt-xs mat-icon-button (click)="snav.toggle()" value="sidebarclosed">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <!-- ============================================================== -->
+        <!-- Logo - style you can find in header.scss -->
+        <!-- ============================================================== -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">
+                <!-- Logo icon --><b>
+                    <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                    <!-- Dark Logo icon -->
+                    <img src="https://camo.githubusercontent.com/8d4fa451b4f47d2d10ff585a78f7fbd88f8f5530/687474703a2f2f7069676d656e742e6769746875622e696f2f66616b652d6c6f676f732f6c6f676f732f766563746f722f636f6c6f722f73706163652d637562652e737667" alt="homepage" class="dark-logo">
+                    <!-- Light Logo icon -->
+                    <img src="https://camo.githubusercontent.com/8d4fa451b4f47d2d10ff585a78f7fbd88f8f5530/687474703a2f2f7069676d656e742e6769746875622e696f2f66616b652d6c6f676f732f6c6f676f732f766563746f722f636f6c6f722f73706163652d637562652e737667" alt="homepage"
+                    width="60" height="34" class="light-logo">
+                </b>
+                    <!--End Logo icon -->
+                    <!-- Logo text -->
+                    <span class="page-title" fxShow="false" fxShow.gt-xs>Cloud Object Storage (COS)</span>
+            </a>
+        </div>
+
+        <span fxFlex></span>
+        <!-- ============================================================== -->
+        <!-- app header component - style you can find in header.scss / header.component.ts-->
+        <!-- ============================================================== -->
+        <app-header></app-header>
+      </mat-toolbar-row>
+      <mat-toolbar-row fxHide.xs>
+        <nav mat-tab-nav-bar [backgroundColor]="background">
+          <a mat-tab-link *ngFor="let link of links"
+             class="header-tab"
+             routerLink = "{{link.route}}"
+             routerLinkActive="active"
+             (click)="activeLink = link.name"
+             [active]="activeLink == link.name"> {{ link.name }} </a>
+        </nav>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <!-- ============================================================== -->
+    <!-- End Topbar - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0" [ngClass]="{'minisidebar': minisidebar}">
+        <!-- ============================================================== -->
+        <!-- Sidebar - style you can find in sidebar.scss -->
+        <!-- ============================================================== -->
+        <mat-sidenav #snav id="snav" class="dark-sidebar pl-xs" [mode]="mobileQuery.matches ? 'side' : 'over'" fixedTopGap="0" (open)="sidebarOpened = true" (close)="sidebarOpened = false" >
+
+                <app-sidebar></app-sidebar>
+
+
+        </mat-sidenav>
+        <!-- ============================================================== -->
+        <!-- Sidebar - style you can find in sidebar.scss -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- Page container - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <mat-sidenav-content class="page-wrapper">
+
+                <div class="page-content">
+
+                        <router-outlet><app-spinner></app-spinner></router-outlet>
+
+                </div>
+
+        </mat-sidenav-content>
+        <!-- ============================================================== -->
+        <!-- Page container - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+    </mat-sidenav-container>
+</div>

@@ -1,0 +1,252 @@
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <mat-card-title> Nodes Details
+          <a routerLink="/nodes/config" class="" style="float: right">
+            <mat-icon class="icon_size" color="primary">add_circle</mat-icon>
+          </a>
+        </mat-card-title><hr/>
+        <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" style="margin-top: 20px;margin-bottom: 30px">
+          <div fxFlex="33.3" class="subtitle">
+            <mat-icon style="">laptop_windows</mat-icon> <span style="padding: 12px">c3260-g30</span>
+          </div>
+          <div fxFlex="33.3" class="subtitle text-center">
+            <span style="margin-right: 10px">Fault Status </span> <mat-icon style="color: green">check_circle</mat-icon> Normal
+
+          </div>
+          <div fxFlex="33.3">
+            <span class="subtitle" style="float: right">COS Node Version : 3.20.1</span>
+
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column">
+            <div fxFlex.gt-md="50" fxFlex.gt-xs="50" class=" b-r">
+              <h3 class="font-medium m-t-0 text-center">Storage & Partitions</h3>
+              <div style="">
+                <svg id="pie-chart" width="400" height="200"></svg>
+              </div>
+            </div>
+            <div fxFlex.gt-md="50" fxFlex.gt-xs="50" class="">
+              <h3 class="font-medium  m-t-0 text-center">Disks Health</h3>
+              <div style="mar">
+                <svg id="donut-chart" width="400" height="200"></svg>
+              </div>
+
+            </div>
+
+
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <!-- Card column -->
+  <div fxFlex.gt-sm="100%" fxFlex="100">
+    <mat-card>
+      <mat-tab-group class="demo-tab-group">
+        <mat-tab label="Setting">
+          <div class="demo-tab-content">
+
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="45">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Node Name" ngModel name="cluster-name" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="45">
+                  <mat-form-field class="text-width">
+                    <mat-select placeholder="Hardware Model" [(ngModel)]="selectedValue" name="state" required>
+                      <mat-option *ngFor="let state of states" [value]="state.value">
+                        {{state.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="45">
+                  <mat-form-field class="text-width">
+                    <mat-select placeholder="Cluster" [(ngModel)]="selectedValue" name="state" required>
+                      <mat-option *ngFor="let state of states" [value]="state.value">
+                        {{state.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="45">
+                  <mat-form-field class="text-width">
+                    <mat-select placeholder="State" [(ngModel)]="selectedValue" name="state" required>
+                      <mat-option *ngFor="let state of states" [value]="state.value">
+                        {{state.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="45">
+                  <mat-form-field class="text-width">
+                    <mat-select placeholder="Resiliency Group" [(ngModel)]="selectedValue" name="state" required>
+                      <mat-option *ngFor="let state of states" [value]="state.value">
+                        {{state.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="45">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Management IP" ngModel name="cluster-name" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <br>
+              <br>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="0.2%" fxLayoutAlign="end center" >
+
+                <div fxFlex="10" fx>
+                  <button mat-raised-button >Cancel</button>
+                </div>
+                <div fxFlex="10" fx>
+                  <button mat-raised-button color="primary">Save</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </mat-tab>
+        <mat-tab label="Status">
+          <div class="demo-tab-content">
+            <div fxLayout="row" fxLayoutWrap="wrap">
+              <!-- column -->
+              <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="100" fxFlex="100">
+                <mat-card>
+                  <mat-card-content>
+                    <!-- column -->
+                    <div class="stats">
+                      <h3 class="m-0 card-heading text-center">Services</h3>
+
+                      <div class="table-rasponsive">
+                        <table mat-table [dataSource]="servicesData" class="mat-elevation-z8">
+                          <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef> Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                          </ng-container>
+
+                          <!-- Weight Column -->
+                          <ng-container matColumnDef="status">
+                            <th mat-header-cell *matHeaderCellDef> Status </th>
+                            <td mat-cell *matCellDef="let element"> <mat-icon style="color: green">check_circle</mat-icon> </td>
+                          </ng-container>
+
+                          <tr mat-header-row *matHeaderRowDef="displayedServiceColumns"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedServiceColumns;"></tr>
+                        </table>
+
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+              <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="100" fxFlex="100">
+                <mat-card>
+                  <mat-card-content>
+                    <!-- column -->
+                    <div class="stats">
+                      <h3 class="m-0 card-heading text-center">Interfaces</h3>
+
+                      <div class="table-rasponsive">
+                        <table mat-table [dataSource]="interfaceData" class="mat-elevation-z8">
+                          <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef> Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="ip">
+                            <th mat-header-cell *matHeaderCellDef> IP </th>
+                            <td mat-cell *matCellDef="let element"> {{element.ip}} </td>
+                          </ng-container>
+
+                          <!-- Weight Column -->
+                          <ng-container matColumnDef="status">
+                            <th mat-header-cell *matHeaderCellDef> Status </th>
+                            <td mat-cell *matCellDef="let element"> <mat-icon style="color: green">check_circle</mat-icon> </td>
+                          </ng-container>
+
+                          <tr mat-header-row *matHeaderRowDef="displayedInterfaceColumns"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedInterfaceColumns;"></tr>
+                        </table>
+
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+              <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="100" fxFlex="100">
+                <mat-card>
+                  <mat-card-content>
+                    <!-- column -->
+                    <div class="stats">
+                      <h3 class="m-0 card-heading text-center">Node Resiliency</h3>
+
+                      <div class="table-rasponsive">
+                        <table mat-table [dataSource]="nodeData" class="mat-elevation-z8">
+                          <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef> Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                          </ng-container>
+
+                          <!-- Weight Column -->
+                          <ng-container matColumnDef="status">
+                            <th mat-header-cell *matHeaderCellDef> Status </th>
+                            <td mat-cell *matCellDef="let element"> <mat-icon style="color: green">check_circle</mat-icon> </td>
+                          </ng-container>
+
+                          <tr mat-header-row *matHeaderRowDef="displayedServiceColumns"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedServiceColumns;"></tr>
+                        </table>
+
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Audit">
+          No content
+        </mat-tab>
+        <mat-tab label="Connectivity">
+          <div class="demo-tab-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+            Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+            In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+            feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+            orci enim rutrum enim, vel tempor sapien arcu a tellus.
+            <br />
+            <br />
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+            Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+            In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+            feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+            orci enim rutrum enim, vel tempor sapien arcu a tellus.
+          </div>
+        </mat-tab>
+        <mat-tab label="Event/Alert">
+          No content
+        </mat-tab>
+        <mat-tab label="Terminal">
+          No content
+        </mat-tab>
+        <mat-tab label="Transaction Logs">
+          No content
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
+</div>

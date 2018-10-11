@@ -1,0 +1,149 @@
+<!-- ============================================================== -->
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <!-- column -->
+  <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <!-- column -->
+        <div class="stats">
+          <h3 class="m-0 card-heading">Alerts</h3>
+          <div fxLayout="row" fxLayoutWrap="wrap" class="text-center">
+
+            <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" class="d-flex no-block p-20 b-r">
+
+              <div class="no-shrink" style="margin-left: 22px">
+                <div mat-card-icon class="shadow-none critical" >
+                  <mat-icon style="font-size: 30px">info</mat-icon>
+                </div>
+              </div>
+              <!-- column -->
+              <div>
+                <h3 class="font-medium m-0 critical">386</h3>
+                <span class="text-muted m-0">CRITICAL</span>
+              </div>
+            </div>
+
+            <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" class="d-flex no-block p-20">
+
+              <div class="no-shrink" style="margin-left: 22px">
+                <div mat-card-icon class="shadow-none warning" >
+                  <mat-icon style="font-size: 30px">warning</mat-icon>
+                </div>
+              </div>
+              <div>
+                <h3 class="font-medium  m-0 warning">56</h3>
+                <span class="text-muted">WARNING</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- column -->
+  <!-- column -->
+  <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card>
+      <mat-card-content >
+        <!-- column -->
+        <div class="stats">
+          <h3 class="m-0 card-heading">Node Healths</h3>
+          <div fxLayout="row" fxLayoutWrap="wrap" class="text-center">
+
+            <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" class="p-20 b-r">
+              <h3 class="font-medium m-0 healthy">45</h3>
+              <span class="text-muted">Healthy</span>
+            </div>
+
+            <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" class="p-20 b-r">
+              <h3 class="font-medium  m-0 warning">56</h3>
+              <span class="text-muted">Warning</span>
+            </div>
+
+            <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" class="p-20">
+              <h3 class="font-medium  m-0 critical">6</h3>
+              <span class="text-muted">Down</span>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- column -->
+  <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <!-- column -->
+        <div class="stats">
+          <h3 class="m-0 card-heading">Configuration Audit</h3>
+          <div fxLayout="row" fxLayoutWrap="wrap" class="text-center">
+
+            <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" class="p-20 b-r">
+              <h3 class="font-medium m-0 healthy">45</h3>
+              <span class="text-muted">Configs Passed</span>
+            </div>
+
+            <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" class="p-20">
+              <h3 class="font-medium  m-0 critical">56</h3>
+              <span class="text-muted">Configs Failed</span>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- column -->
+</div>
+<!-- ============================================================== -->
+<!-- Charts -->
+<!-- ============================================================== -->
+<div fxLayout="row" fxLayoutWrap="wrap">
+
+  <!-- Column-->
+  <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <mat-card-title>Resiliency Groups</mat-card-title>
+        <div class="piechart" >
+          <x-chartist class=""
+                      [data]="donuteChart1.data"
+                      [type]="donuteChart1.type"
+                      [options]="donuteChart1.options"
+                      [responsiveOptions]="donuteChart1.responsiveOptions"
+                      [events]="donuteChart1.events">
+          </x-chartist>
+        </div>
+      </mat-card-content>
+      <hr>
+      <mat-card-content>
+        <ul class="list-inline text-center">
+          <li><h6 class="text-muted text-success m-0"><i class="fa fa-circle font-10 m-r-10 "></i>Total RG</h6> </li>
+          <li><h6 class="text-muted  text-info  m-0"><i class="fa fa-circle font-10 m-r-10"></i>Total Nodes</h6> </li>
+        </ul>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+  <!-- Column-->
+  <div fxFlex.gt-sm="66.66" fxFlex.gt-md="66.66" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <mat-card-title>Resiliency Group Capacity</mat-card-title>
+
+        <div class="barchrt" style="height:360px;">
+          <x-chartist class="" [data]="barChart1.data"
+                      [type]="barChart1.type"
+                      [options]="barChart1.options"
+                      [responsiveOptions]="barChart1.responsiveOptions"
+                      [events]="barChart1.events">
+          </x-chartist>
+        </div>
+        <ul class="list-inline text-center">
+          <li><h6 class="text-muted text-success m-0"><i class="fa fa-circle font-10 m-r-10 "></i>Used</h6> </li>
+          <li><h6 class="text-muted  text-info  m-0"><i class="fa fa-circle font-10 m-r-10"></i>Free</h6> </li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- Column-->
+</div>

@@ -1,0 +1,420 @@
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <!-- Card column -->
+  <div fxFlex.gt-sm="100%" fxFlex="100">
+    <mat-card>
+      <mat-tab-group>
+        <mat-tab label="Add Resiliency Group">
+          <mat-card-content>
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="45">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Resiliency Name" ngModel name="cluster-name" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="45">
+                  <mat-form-field class="text-width">
+                    <mat-select placeholder="Hardware Model" [(ngModel)]="selectedValue" name="state" required>
+                      <mat-option *ngFor="let state of states" [value]="state.value">
+                        {{state.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="45">
+                  <mat-form-field class="text-width">
+                    <mat-select placeholder="Cluster" [(ngModel)]="selectedValue" name="state" required>
+                      <mat-option *ngFor="let state of states" [value]="state.value">
+                        {{state.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="45">
+                  <mat-form-field class="text-width">
+                    <mat-select placeholder="State" [(ngModel)]="selectedValue" name="state" required>
+                      <mat-option *ngFor="let state of states" [value]="state.value">
+                        {{state.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+
+                  <div fxFlex="45">
+                    <mat-form-field class="text-width">
+                      <input type="text" matInput placeholder="Numbers of Node" ngModel name="cluster-name" required>
+                    </mat-form-field>
+                  </div>
+              </div>
+              <br>
+              <mat-card-title class="subtitle">Validation Rules </mat-card-title><hr/>
+              <mat-card-subtitle>Management Interface</mat-card-subtitle>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Start Range" ngModel name="start-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="End Range" ngModel name="end-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Netmask" ngModel name="netmask"  required #authenticationFQDN="ngModel">
+                    <mat-error *ngIf="authenticationFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="email" matInput placeholder="Gateway" ngModel name="gateway" email required #storageFQDN="ngModel">
+                    <mat-error *ngIf="storageFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <br>
+              <mat-card-subtitle>Data Interface</mat-card-subtitle>
+              <span class="subtitle">Eth2</span>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Start Range" ngModel name="start-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="End Range" ngModel name="end-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Netmask" ngModel name="netmask"  required #authenticationFQDN="ngModel">
+                    <mat-error *ngIf="authenticationFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="email" matInput placeholder="Gateway" ngModel name="gateway" email required #storageFQDN="ngModel">
+                    <mat-error *ngIf="storageFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <span class="subtitle">Eth3</span>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Start Range" ngModel name="start-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="End Range" ngModel name="end-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Netmask" ngModel name="netmask"  required #authenticationFQDN="ngModel">
+                    <mat-error *ngIf="authenticationFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="email" matInput placeholder="Gateway" ngModel name="gateway" email required #storageFQDN="ngModel">
+                    <mat-error *ngIf="storageFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <span class="subtitle">Eth4</span>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Start Range" ngModel name="start-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="End Range" ngModel name="end-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Netmask" ngModel name="netmask"  required #authenticationFQDN="ngModel">
+                    <mat-error *ngIf="authenticationFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="email" matInput placeholder="Gateway" ngModel name="gateway" email required #storageFQDN="ngModel">
+                    <mat-error *ngIf="storageFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <span class="subtitle">Eth5</span>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Start Range" ngModel name="start-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="End Range" ngModel name="end-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Netmask" ngModel name="netmask"  required #authenticationFQDN="ngModel">
+                    <mat-error *ngIf="authenticationFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="email" matInput placeholder="Gateway" ngModel name="gateway" email required #storageFQDN="ngModel">
+                    <mat-error *ngIf="storageFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <br>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Hostname Prefix" ngModel name="start-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Start Number" ngModel name="end-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="10" fx>
+                  <button mat-raised-button color="primary">Generate</button>
+                </div>
+                <div fxFlex="10" fx>
+                  <button mat-raised-button>Import</button>
+                </div>
+                <div fxFlex="10" fx>
+                  <button mat-raised-button>Manual</button>
+                </div>
+              </div>
+              <br>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="0.2%" fxLayoutAlign="end center" >
+
+                <div fxFlex="10" fx>
+                  <button mat-raised-button >Cancel</button>
+                </div>
+                <div fxFlex="10" fx>
+                  <button mat-raised-button color="primary">Save</button>
+                </div>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-tab>
+        <mat-tab label="Add Nodes">
+          <mat-card-content>
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="45">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Node Name" ngModel name="cluster-name" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="45">
+                  <mat-form-field class="text-width">
+                    <mat-select placeholder="Hardware Model" [(ngModel)]="selectedValue" name="state" required>
+                      <mat-option *ngFor="let state of states" [value]="state.value">
+                        {{state.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="45">
+                  <mat-form-field class="text-width">
+                    <mat-select placeholder="Cluster" [(ngModel)]="selectedValue" name="state" required>
+                      <mat-option *ngFor="let state of states" [value]="state.value">
+                        {{state.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="45">
+                  <mat-form-field class="text-width">
+                    <mat-select placeholder="State" [(ngModel)]="selectedValue" name="state" required>
+                      <mat-option *ngFor="let state of states" [value]="state.value">
+                        {{state.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="45">
+                  <mat-form-field class="text-width">
+                    <mat-select placeholder="Resiliency Group" [(ngModel)]="selectedValue" name="state" required>
+                      <mat-option *ngFor="let state of states" [value]="state.value">
+                        {{state.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="45">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Management IP" ngModel name="cluster-name" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <br>
+              <mat-card-title class="subtitle">Validation Rules </mat-card-title><hr/>
+              <mat-card-subtitle>Management Interface</mat-card-subtitle>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Start Range" ngModel name="start-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="End Range" ngModel name="end-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Netmask" ngModel name="netmask"  required #authenticationFQDN="ngModel">
+                    <mat-error *ngIf="authenticationFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="email" matInput placeholder="Gateway" ngModel name="gateway" email required #storageFQDN="ngModel">
+                    <mat-error *ngIf="storageFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <br>
+              <mat-card-subtitle>Data Interface</mat-card-subtitle>
+              <span class="subtitle">Eth2</span>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Start Range" ngModel name="start-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="End Range" ngModel name="end-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Netmask" ngModel name="netmask"  required #authenticationFQDN="ngModel">
+                    <mat-error *ngIf="authenticationFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="email" matInput placeholder="Gateway" ngModel name="gateway" email required #storageFQDN="ngModel">
+                    <mat-error *ngIf="storageFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <span class="subtitle">Eth3</span>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Start Range" ngModel name="start-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="End Range" ngModel name="end-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Netmask" ngModel name="netmask"  required #authenticationFQDN="ngModel">
+                    <mat-error *ngIf="authenticationFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="email" matInput placeholder="Gateway" ngModel name="gateway" email required #storageFQDN="ngModel">
+                    <mat-error *ngIf="storageFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <span class="subtitle">Eth4</span>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Start Range" ngModel name="start-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="End Range" ngModel name="end-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Netmask" ngModel name="netmask"  required #authenticationFQDN="ngModel">
+                    <mat-error *ngIf="authenticationFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="email" matInput placeholder="Gateway" ngModel name="gateway" email required #storageFQDN="ngModel">
+                    <mat-error *ngIf="storageFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <span class="subtitle">Eth5</span>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Start Range" ngModel name="start-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="End Range" ngModel name="end-range" required>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="text" matInput placeholder="Netmask" ngModel name="netmask"  required #authenticationFQDN="ngModel">
+                    <mat-error *ngIf="authenticationFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="20">
+                  <mat-form-field class="text-width">
+                    <input type="email" matInput placeholder="Gateway" ngModel name="gateway" email required #storageFQDN="ngModel">
+                    <mat-error *ngIf="storageFQDN.hasError('required')">Field must not be empty.</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <br>
+
+              <br>
+              <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="0.2%" fxLayoutAlign="end center" >
+
+                <div fxFlex="10" fx>
+                  <button mat-raised-button >Cancel</button>
+                </div>
+                <div fxFlex="10" fx>
+                  <button mat-raised-button color="primary">Save</button>
+                </div>
+              </div>
+            </form>
+
+          </mat-card-content>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
+</div>

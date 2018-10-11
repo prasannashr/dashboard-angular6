@@ -1,0 +1,97 @@
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <mat-card-title> Cluster-1:2 Nodes
+          <a routerLink="/nodes/config" class="" style="float: right">
+            <mat-icon class="icon_size" color="primary">add_circle</mat-icon>
+          </a>
+        </mat-card-title><hr/>
+        <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column">
+          <div fxFlex="50">
+            <mat-form-field class="search-width" color="primary">
+              <input type="text" matInput placeholder="Search" ngModel name="cluster-name">
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50">
+            <button mat-raised-button color="primary" class="m-r-10">All</button>
+            <button mat-raised-button color="" class="m-r-10">Inservice</button>
+            <button mat-raised-button color="" class="m-r-10">Maintenance</button>
+            <button mat-raised-button color="" class="m-r-10">All Nodes</button>
+
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column">
+
+          <div fxFlex="100" >
+            <div style="float : right">
+              <mat-button-toggle-group #group="matButtonToggleGroup" >
+                <mat-button-toggle value="card" (click)="toggle()">
+                  <mat-icon color="primary">apps</mat-icon>
+                </mat-button-toggle>
+                <mat-button-toggle value="list" (click)="toggle()">
+                  <mat-icon color="primary">list</mat-icon>
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+          </div>
+        </div>
+        <div class="table-rasponsive" *ngIf="!show">
+          <mat-table #table [dataSource]="dataSource" matSort >
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="maintenance">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Management IP  </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.maintenance}} </mat-cell>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="state">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> State </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.state}} </mat-cell>
+            </ng-container>
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <mat-icon color="accent">mode_edit</mat-icon>
+                <mat-icon color="accent">mode_delete</mat-icon>
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+
+        <div class="tileView" id="tileView" *ngIf="show">
+          <mat-grid-list cols="5" gutterSize="30" rowHeight="4:3">
+            <mat-grid-tile *ngFor="let node of nodes" >
+              <div class="social-widget" routerLink="node/{{node.name}}" style="cursor: pointer">
+                <h3 class="text-center"><mat-icon style="font-size: 12px; margin-top: 15px">laptop_windows</mat-icon> {{node.name}}</h3>
+                <div class="text-center" style="font-size: 12px">
+                   {{node.maintenance}}
+                </div>
+                <hr style="border-top: 1px solid #1e88e5"/>
+                <div fxLayout="row" fxLayoutWrap="wrap" class="text-center">
+                  <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" class="p-20">
+                     <h3 style="font-size: 14px"> <mat-icon style="font-size: 12px">settings</mat-icon> {{node.state}}</h3>
+                  </div>
+                </div>
+              </div>
+            </mat-grid-tile>
+
+          </mat-grid-list>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

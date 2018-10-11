@@ -1,0 +1,17 @@
+.search-width {
+  width: 100%;
+}
+.icon_size {
+  font-size: 40px;
+}
+.mat-row{
+  border-bottom-color:blue;
+}
+mat-grid-tile {
+  border-color: blue;
+  border-style: solid;
+}
+
+.tileView{
+  margin-top: 10px;
+}

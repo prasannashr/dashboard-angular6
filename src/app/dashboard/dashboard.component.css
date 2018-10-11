@@ -1,0 +1,20 @@
+.critical {
+  color: red;
+}
+
+.warning {
+  color: orange;
+}
+
+.healthy{
+  color: green;
+}
+
+.card-heading{
+  text-align: center;
+}
+.piechart{
+  height:300px;
+  width:280px;
+  margin: 0 auto;
+}

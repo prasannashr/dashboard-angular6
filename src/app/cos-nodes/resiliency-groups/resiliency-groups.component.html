@@ -1,0 +1,103 @@
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <mat-card-title>Resiliency Groups</mat-card-title>
+        <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column">
+          <div fxFlex="50">
+            <mat-form-field class="search-width" color="primary">
+              <input type="text" matInput placeholder="Search" ngModel name="cluster-name">
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50">
+            <button mat-raised-button color="primary" class="m-r-10">Resiliency Group(s)</button>
+            <button mat-raised-button color="" class="">All Nodes</button>
+            <a routerLink="/nodes/config" class="m-r-5" style="float: right">
+              <mat-icon class="icon_size" color="primary">add_circle</mat-icon>
+            </a>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column">
+
+          <div fxFlex="100" >
+            <div style="float : right">
+              <mat-button-toggle-group #group="matButtonToggleGroup" >
+                <mat-button-toggle value="card" (click)="toggle()">
+                  <mat-icon color="primary">apps</mat-icon>
+                </mat-button-toggle>
+                <mat-button-toggle value="list" (click)="toggle()">
+                  <mat-icon color="primary">list</mat-icon>
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+          </div>
+        </div>
+        <div class="table-rasponsive" *ngIf="!show">
+          <mat-table #table [dataSource]="dataSource" matSort >
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="total">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Total Nodes </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.total}} Nodes</mat-cell>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="maintenance">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Maintenance  </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.maintenance}} </mat-cell>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="inservice">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Inservice </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.inservice}} </mat-cell>
+            </ng-container>
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <mat-icon color="accent">mode_edit</mat-icon>
+                <mat-icon color="accent">mode_delete</mat-icon>
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+
+        <div class="tileView" id="tileView" *ngIf="show">
+          <mat-grid-list cols="5" gutterSize="30" rowHeight="4:3">
+            <mat-grid-tile *ngFor="let cluster of clusters" >
+              <div class="social-widget" routerLink="{{cluster.name}}" style="cursor: pointer">
+                <div class="text-center">{{cluster.name}}</div>
+                <div class="text-center" style="font-size: 12px; margin-bottom: 10px">
+                  <mat-icon style="font-size: 12px">laptop_windows</mat-icon> {{cluster.total}} Nodes
+                </div>
+                <div fxLayout="row" fxLayoutWrap="wrap" class="text-center">
+                  <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" class="p-20 b-r">
+                    <h3 class="">{{cluster.maintenance}}</h3>
+                    <span class="" style="font-size: 12px; margin-right: 40px">Maintenance</span>
+                  </div>
+                  <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" class="p-20">
+                    <h3 class="">{{cluster.inservice}}</h3>
+                    <span class="" style="font-size: 12px">Inservice</span>
+                  </div>
+                </div>
+              </div>
+            </mat-grid-tile>
+
+          </mat-grid-list>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

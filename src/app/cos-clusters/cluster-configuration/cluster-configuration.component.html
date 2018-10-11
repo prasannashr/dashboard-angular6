@@ -1,0 +1,247 @@
+<!-- ============================================================== -->
+<!-- row -->
+<!-- ============================================================== -->
+<div >
+  <!-- Card column -->
+  <div fxFlex.gt-sm="100%" fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <mat-card-title>Cos Clusters Configuration</mat-card-title>
+
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+          <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <input type="text" matInput placeholder="Name" ngModel name="cluster-name" required>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <mat-select placeholder="Cluster State" [(ngModel)]="selectedValue" name="state" required>
+                  <mat-option *ngFor="let state of states" [value]="state.value">
+                    {{state.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <input type="text" matInput placeholder="Authentication FQDN" ngModel name="authenticationFQDN"  required #authenticationFQDN="ngModel">
+                <mat-error *ngIf="authenticationFQDN.hasError('required')">Field must not be empty.</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <input type="email" matInput placeholder="Storage FQDN" ngModel name="storageFQDN" email required #storageFQDN="ngModel">
+                <mat-error *ngIf="storageFQDN.hasError('required')">Field must not be empty.</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <br>
+          <mat-card-subtitle class="subtitle">Telemetry Forwarding</mat-card-subtitle> <hr/>
+
+          <div dir="ltr" fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+            <div fxFlex="25">
+              <mat-form-field class="text-width">
+                <mat-select placeholder="TD-Agent" [(ngModel)]="selectedValue" name="tdAgent" required>
+                  <mat-option *ngFor="let state of states" [value]="state.value">
+                    {{state.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <mat-select placeholder="Destination Type" [(ngModel)]="selectedValue" name="destinationType" required>
+                  <mat-option *ngFor="let state of states" [value]="state.value">
+                    {{state.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <input type="email" matInput placeholder="Destination Hostname(s)" ngModel name="hostname" email required #hostname="ngModel">
+                <mat-error *ngIf="hostname.hasError('required')">Field must not be empty.</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <mat-card-subtitle class="subtitle">Resiliency Group Smoothing</mat-card-subtitle> <hr/>
+          <div dir="ltr" fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="2%">
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <mat-select placeholder="Service State" [(ngModel)]="selectedValue" name="serviceState" required>
+                  <mat-option *ngFor="let state of states" [value]="state.value">
+                    {{state.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <mat-card-subtitle class="subtitle">Content Policies</mat-card-subtitle> <hr/>
+
+          <div dir="ltr" fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <mat-select placeholder="Cluster policy Type" [(ngModel)]="selectedValue" name="clusterPolicyType" required>
+                  <mat-option value="disable">Disable</mat-option>
+                  <mat-option value="mirroring">Mirroring</mat-option>
+                  <mat-option value="Erasure Coding">Erasure Coding</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <mat-select placeholder="Resilience Factor" [(ngModel)]="selectedValue" name="resilienceFactor" required>
+                  <mat-option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]" [value]="number">
+                    {{number}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <input type="number" matInput placeholder="Resiliency Group Size" ngModel name="resiliencyGroupSize" required #resiliencyGroupSize="ngModel">
+                <mat-error *ngIf="resiliencyGroupSize.hasError('required')">Field must not be empty.</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <input type="text" matInput placeholder="Resilience Outcome Data:Parity" ngModel name="resiliencyOutcome" required #resiliencyOutcome="ngModel">
+                <mat-error *ngIf="resiliencyOutcome.hasError('required')">Field must not be empty.</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div dir="ltr" fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <mat-select placeholder="Node policy Type" [(ngModel)]="selectedValue" name="nodePolicyType" required>
+                  <mat-option value="disable">Disable</mat-option>
+                  <mat-option value="mirroring">Mirroring</mat-option>
+                  <mat-option value="Erasure Coding">Erasure Coding</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <mat-select placeholder="Resilience Factor" [(ngModel)]="selectedValue" name="resilienceFactor" required>
+                  <mat-option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]" [value]="number">
+                    {{number}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <input type="text" matInput placeholder="Resilience Outcome Data:Parity" ngModel name="resiliencyOutcome" required #resiliencyOutcome="ngModel">
+                <mat-error *ngIf="resiliencyOutcome.hasError('required')">Field must not be empty.</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <mat-card-subtitle class="subtitle">File System Surge Mode</mat-card-subtitle> <hr/>
+
+          <div dir="ltr" fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <mat-select placeholder="Service State" [(ngModel)]="selectedValue" name="serviceState" required>
+                  <mat-option *ngFor="let state of states" [value]="state.value">
+                    {{state.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <input type="text" matInput placeholder="Fast Track Start Threshold (0-100%" ngModel name="startThreshold" email required #startThreshold="ngModel">
+                <mat-error *ngIf="startThreshold.hasError('required')">Field must not be empty.</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <input type="number" matInput placeholder="Fast Track Exit Threshold (0-99%)" ngModel name="exitThreshold" email required #exitThreshold="ngModel">
+                <mat-error *ngIf="exitThreshold.hasError('required')">Field must not be empty.</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <mat-card-subtitle class="subtitle">Authentication Profiles</mat-card-subtitle> <hr/>
+
+          <div dir="ltr" fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <mat-select placeholder="Profile Type" [(ngModel)]="selectedValue" name="profileType" required>
+                  <mat-option value="SWAUTH">SWAUTH</mat-option>
+                  <mat-option value="FANOUT">FANOUT</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="25">
+              <mat-form-field class="text-width">
+                <input type="text" matInput placeholder="Account Name" ngModel name="accountName" required #accountName="ngModel">
+                <mat-error *ngIf="accountName.hasError('required')">Field must not be empty.</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <input type="text" matInput placeholder="User Name" ngModel name="userName" required #userName="ngModel">
+                <mat-error *ngIf="userName.hasError('required')">Field must not be empty.</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <input type="password" matInput placeholder="Key" ngModel name="key" required #key="ngModel">
+                <mat-error *ngIf="key.hasError('required')">Field must not be empty.</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <mat-card-subtitle class="subtitle">Metrics Exporter Service</mat-card-subtitle> <hr/>
+          <div dir="ltr" fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="2%">
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <mat-select placeholder="Node Exporter" [(ngModel)]="selectedValue" name="nodeExporter" required>
+                  <mat-option *ngFor="let state of states" [value]="state.value">
+                    {{state.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <mat-card-subtitle >Custom Tags</mat-card-subtitle>
+          <div dir="ltr" fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="6%">
+
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <input type="text" matInput placeholder="Key" ngModel name="customKey" required #customKey="ngModel">
+                <mat-error *ngIf="customKey.hasError('required')">Field must not be empty.</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxFlex="20">
+              <mat-form-field class="text-width">
+                <input type="text" matInput placeholder="Value" ngModel name="customValue" required #customValue="ngModel">
+                <mat-error *ngIf="customValue.hasError('required')">Field must not be empty.</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutWrap="wrap" fxLayout.xs="column" fxLayoutGap="0.2%" fxLayoutAlign="end center" >
+
+            <div fxFlex="10" fx>
+              <button mat-raised-button >Cancel</button>
+            </div>
+            <div fxFlex="10" fx>
+              <button mat-raised-button color="primary">Save</button>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+
+    </mat-card>
+
+
+  </div>
+</div>

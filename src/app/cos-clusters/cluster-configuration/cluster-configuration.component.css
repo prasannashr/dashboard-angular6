@@ -1,0 +1,10 @@
+.text-width {
+  width: 100%;
+}
+hr{
+  border: 1px dashed;
+}
+.subtitle{
+  font-size: 16px;
+  color: black;
+}
